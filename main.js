@@ -1,7 +1,13 @@
 const canvas = document.querySelector('canvas')
 const ctx = canvas.getContext('2d')
 
-var gImgs = [{id: 1, url: 'https://placehold.co/600x400', keywords: ['funny', 'cat']}]
+// ===== DATA =====
+var gImgs = [
+  {id: 1, url: 'meme-imgs/square/1.jpg', keywords: ['funny', 'trump']},
+  {id: 2, url: 'meme-imgs/square/2.jpg', keywords: ['cute', 'dog']},
+  {id: 2, url: 'meme-imgs/square/3.jpg', keywords: ['cute', 'baby']},
+  {id: 2, url: 'meme-imgs/square/4.jpg', keywords: ['cute', 'cat']},
+]
 var gMeme = {
     selectedImgId: 1,
     selectedLineIdx: 0,
@@ -15,6 +21,7 @@ var gMeme = {
 }
 var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 
+// ===== MEME CONTROLLER =====
 
 function renderMeme() {
     
@@ -55,3 +62,7 @@ function setLineTxt(txt){
 document.getElementById('text-input').addEventListener('input', (e) => {
   onTextInput(e.target.value)
 })
+
+// ===== MEME SERVICE =====
+
+renderMeme()
