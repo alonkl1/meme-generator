@@ -1,36 +1,71 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  padding: 10px;
+  padding: 20px;
   font-family: Arial, sans-serif;
+  background: #c7a6a6;
+}
+
+.editor {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  text-align: center;
 }
 
 canvas {
-  max-width: 100%;
-  height: auto;
-  display: block;
+  width: 100%;
+  max-width: 500px;
+  border: 2px solid #ddd;
+  margin-bottom: 15px;
+}
+
+input, button {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 5px;
 }
 
 input {
   width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  font-size: 16px;
+  margin-bottom: 10px;
 }
 
+button {
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  border: none;
+  padding: 10px 20px;
+}
+
+button:hover {
+  background: #0056b3;
+}
 
 .gallery {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 10px;
-  margin-top: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
 }
 
 .gallery img {
   width: 100%;
   cursor: pointer;
-  border: 2px solid transparent;
+  border: 3px solid transparent;
+  border-radius: 4px;
+  transition: border 0.2s;
 }
 
 .gallery img:hover {
-  border: 2px solid blue;
+  border: 3px solid #007bff;
 }
