@@ -48,6 +48,14 @@ function renderMeme() {
 
 }
 
+function onDownloadMeme() {
+    console.log('ONDOWNLOADMEME')
+
+    const link = document.createElement('a')
+    link.href = canvas.toDataURL()
+    link.download = 'meme.jpg'
+    link.click()
+}
 function onTextInput(txt) {
   // Update the data
   setLineTxt(txt)
@@ -59,8 +67,13 @@ function onTextInput(txt) {
 function setLineTxt(txt){
     gMeme.lines[gMeme.selectedLineIdx].txt=txt
 }
+
 document.getElementById('text-input').addEventListener('input', (e) => {
   onTextInput(e.target.value)
+})
+
+document.getElementById('download-btn').addEventListener('click', (e) => {
+  onDownloadMeme()
 })
 
 // ===== MEME SERVICE =====
