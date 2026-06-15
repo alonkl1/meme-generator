@@ -5,8 +5,8 @@ const ctx = canvas.getContext('2d')
 var gImgs = [
   {id: 1, url: 'meme-imgs/square/1.jpg', keywords: ['funny', 'trump']},
   {id: 2, url: 'meme-imgs/square/2.jpg', keywords: ['cute', 'dog']},
-  {id: 2, url: 'meme-imgs/square/3.jpg', keywords: ['cute', 'baby']},
-  {id: 2, url: 'meme-imgs/square/4.jpg', keywords: ['cute', 'cat']},
+  {id: 3, url: 'meme-imgs/square/3.jpg', keywords: ['cute', 'baby']},
+  {id: 4, url: 'meme-imgs/square/4.jpg', keywords: ['cute', 'cat']},
 ]
 var gMeme = {
     selectedImgId: 1,
@@ -65,4 +65,29 @@ document.getElementById('text-input').addEventListener('input', (e) => {
 
 // ===== MEME SERVICE =====
 
+
+// ===== GALLERY SERVICE =====
+function setImg(imgId) {
+    gMeme.selectedImgId = imgId
+}
+
+// ===== GALLERY CONTROLLER =====
+function renderGallery() {
+    const galleryEl = document.getElementById('gallery')
+    let html = ''
+    
+    gImgs.forEach(img => {
+        html += `<img src="${img.url}" onclick="onImgSelect(${img.id})">`
+    })
+    
+    galleryEl.innerHTML = html
+}
+
+function onImgSelect(imgId) {
+    setImg(imgId)
+    renderMeme()
+}
+
+
+renderGallery()
 renderMeme()

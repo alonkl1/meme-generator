@@ -16,3 +16,21 @@ input {
   margin-top: 10px;
   font-size: 16px;
 }
+
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.gallery img:hover {
+  border: 2px solid blue;
+}
