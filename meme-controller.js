@@ -1,3 +1,6 @@
+const canvas = document.querySelector('canvas')
+const ctx = canvas.getContext('2d')
+
 
 function renderMeme() {
 
@@ -22,11 +25,18 @@ function renderMeme() {
             const yPos = idx === 0 ? 50 : 450
             ctx.fillText(line.txt, 150, yPos)
 
+            //Store pos for click detection
+            const textMetrics = ctx.measureText(line.txt)
+            line.x = 150 
+            line.y = yPos - line.size
+            line.width = textMetrics.width
+            line.height = line.size
+
             // Draw frame around selected line
             if (idx === gMeme.selectedLineIdx) {
                 ctx.strokeStyle = 'yellow'
                 ctx.lineWidth = 3
-                ctx.strokeRect(100, yPos - 30, 300, 40)
+                ctx.strokeRect(line.x -5 , line.y - 5, line.width + 10, line.height +10)
             }
 
         })
@@ -87,3 +97,9 @@ function onSwitchLine() {
 
     renderMeme()
 }
+
+
+
+
+
+
