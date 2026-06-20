@@ -50,5 +50,9 @@ document.
 getElementById('font-size-decrease').
 addEventListener('click', onFontSizeDecrease)
 
+document.
+getElementById('switch-line-btn').
+addEventListener('click', onSwitchLine)
+
 renderGallery()
 renderMeme()

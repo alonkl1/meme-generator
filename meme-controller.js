@@ -14,13 +14,21 @@ function renderMeme() {
     imgEl.src = img.url
     imgEl.onload = function () {
         ctx.drawImage(imgEl, 0, 0, canvas.width, canvas.height)
-        gMeme.lines.forEach((line,idx ) => {
+        gMeme.lines.forEach((line, idx) => {
 
             ctx.fillStyle = line.color
             ctx.font = line.size + 'px Arial'
+
             const yPos = idx === 0 ? 50 : 450
-            console.log ("idx:", idx, "pos: ", yPos)
             ctx.fillText(line.txt, 150, yPos)
+
+            // Draw frame around selected line
+            if (idx === gMeme.selectedLineIdx) {
+                ctx.strokeStyle = 'yellow'
+                ctx.lineWidth = 3
+                ctx.strokeRect(100, yPos - 30, 300, 40)
+            }
+
         })
     }
 
@@ -54,16 +62,28 @@ function onColorChange(color) {
 function onFontSizeIncrease() {
     const line = gMeme.lines[gMeme.selectedLineIdx]
     line.size += 5
-        renderMeme()
+    renderMeme()
 }
 function onFontSizeDecrease() {
     const line = gMeme.lines[gMeme.selectedLineIdx]
     line.size -= 5
-        renderMeme()
+    renderMeme()
 
 }
 
 function onImgSelect(imgId) {
     setImg(imgId)
+    renderMeme()
+}
+
+
+function onSwitchLine() {
+    gMeme.selectedLineIdx = (gMeme.selectedLineIdx + 1) %
+        gMeme.lines.length
+
+    const currentLine = gMeme.lines[gMeme.selectedLineIdx]
+    document.getElementById('text-input').value = currentLine.txt
+    document.getElementById('color-input').value = currentLine.color
+
     renderMeme()
 }

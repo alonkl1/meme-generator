@@ -10,3 +10,4 @@ function setImg(imgId) {
 function setLineColor(color) {
   gMeme.lines[gMeme.selectedLineIdx].color = color
 }
+
