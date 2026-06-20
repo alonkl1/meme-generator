@@ -9,13 +9,6 @@ body {
   background: #c7a6a6;
 }
 
-.editor {
-  background: white;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 30px;
-  text-align: center;
-}
 
 canvas {
   width: 100%;
@@ -70,3 +63,24 @@ button:hover {
   border: 3px solid #007bff;
 }
 
+.editor {
+  display: grid;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  text-align: center;
+  grid-template-columns: 1fr 0.5fr;
+}
+
+@media (max-width: 768px) {
+  .editor {
+    grid-template-columns: 1fr;
+  }
+}
+
+.controls {
+  display: grid;
+  grid-auto-rows: auto;
+  gap: 10px;
+}

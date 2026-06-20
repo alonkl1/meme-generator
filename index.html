@@ -9,23 +9,31 @@
 
 <body>
     <section class="editor">
-        <canvas width="500" height="500"></canvas>
-        <input type="text" id="text-input" placeholder="Enter meme text">
-        <button id="switch-line-btn">Switch Line</button>
-        <button id="add-line-btn">Add Line</button>
-        <button id="delete-line-btn">Delete Line</button>
-        <div>
-            <label>Text Color</label>
-            <input type="color" id="color-input" value="#ff0000">
+        <div class="canvas">
+            <canvas width="500" height="500">
+            </canvas>
         </div>
 
-        <div>
-            <button id="font-size-increase">Font size +</button>
-            <button id="font-size-decrease">Font size -</button>
+        <div class="controls">
+            <input type="text" id="text-input" placeholder="Enter meme text">
+            <button id="switch-line-btn">Switch Line</button>
+            <button id="add-line-btn">Add Line</button>
+            <button id="delete-line-btn">Delete Line</button>
+            <div>
+                <label>Text Color</label>
+                <input type="color" id="color-input" value="#ff0000">
+            </div>
+
+            <div>
+                <button id="font-size-increase">Font size +</button>
+                <button id="font-size-decrease">Font size -</button>
+            </div>
+
+
+            <button id="download-btn">Download</button>
         </div>
 
 
-        <button id="download-btn">Download</button>
     </section>
 
     <section class="gallery" id="gallery"></section>
