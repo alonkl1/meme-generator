@@ -16,6 +16,11 @@ var gMeme = {
             txt: 'I sometimes eat Falafel',
             size: 20,
             color: 'red'
+        },
+        {
+            txt: '1/2 SHEKEL FOR COLA',
+            size: 20,
+            color: 'red'
         }
     ]
 }
@@ -38,11 +43,16 @@ function renderMeme() {
     imgEl.src = img.url
     imgEl.onload = function () {
         ctx.drawImage(imgEl, 0, 0, canvas.width, canvas.height)
+        gMeme.lines.forEach((line,idx ) => {
 
-        ctx.fillStyle = line.color
-        ctx.font = line.size + 'px Arial'
-        ctx.fillText(line.txt, 50, 50)
+            ctx.fillStyle = line.color
+            ctx.font = line.size + 'px Arial'
+            const yPos = idx === 0 ? 50 : 450
+            console.log ("idx:", idx, "pos: ", yPos)
+            ctx.fillText(line.txt, 150, yPos)
+        })
     }
+
 
     // Get the current text line from gMeme
 
