@@ -11,11 +11,22 @@
     <section class="editor">
         <canvas width="500" height="500"></canvas>
         <input type="text" id="text-input" placeholder="Enter meme text">
+        <div> 
+            <label>Text Color</label>
+            <input type="color" id="color-input" value="#rrggbb">
+        </div>
+
+        <div>
+            <button id="font-size-increase">Font size +</button>
+            <button id="font-size-decrease">Font size -</button>
+        </div>
+
+
         <button id="download-btn">Download</button>
     </section>
 
     <section class="gallery" id="gallery"></section>
-    
+
 
     <script src="main.js"></script>
     <link rel="stylesheet" href="styles.css">

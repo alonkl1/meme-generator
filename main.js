@@ -3,10 +3,10 @@ const ctx = canvas.getContext('2d')
 
 // ===== DATA =====
 var gImgs = [
-  {id: 1, url: 'meme-imgs/square/1.jpg', keywords: ['funny', 'trump']},
-  {id: 2, url: 'meme-imgs/square/2.jpg', keywords: ['cute', 'dog']},
-  {id: 3, url: 'meme-imgs/square/3.jpg', keywords: ['cute', 'baby']},
-  {id: 4, url: 'meme-imgs/square/4.jpg', keywords: ['cute', 'cat']},
+    { id: 1, url: 'meme-imgs/square/1.jpg', keywords: ['funny', 'trump'] },
+    { id: 2, url: 'meme-imgs/square/2.jpg', keywords: ['cute', 'dog'] },
+    { id: 3, url: 'meme-imgs/square/3.jpg', keywords: ['cute', 'baby'] },
+    { id: 4, url: 'meme-imgs/square/4.jpg', keywords: ['cute', 'cat'] },
 ]
 var gMeme = {
     selectedImgId: 1,
@@ -24,9 +24,9 @@ var gKeywordSearchCountMap = { 'funny': 12, 'cat': 16, 'baby': 2 }
 // ===== MEME CONTROLLER =====
 
 function renderMeme() {
-    
+
     const line = gMeme.lines[gMeme.selectedLineIdx]
-    
+
     // Get the current image ID from gMeme
     const imgId = gMeme.selectedImgId
 
@@ -38,10 +38,10 @@ function renderMeme() {
     imgEl.src = img.url
     imgEl.onload = function () {
         ctx.drawImage(imgEl, 0, 0, canvas.width, canvas.height)
-        
+
         ctx.fillStyle = line.color
         ctx.font = line.size + 'px Arial'
-        ctx.fillText (line.txt, 50, 50)
+        ctx.fillText(line.txt, 50, 50)
     }
 
     // Get the current text line from gMeme
@@ -57,27 +57,49 @@ function onDownloadMeme() {
     link.click()
 }
 function onTextInput(txt) {
-  // Update the data
-  setLineTxt(txt)
-  
-  // Redraw
-  renderMeme()
+    // Update the data
+    setLineTxt(txt)
+
+    // Redraw
+    renderMeme()
 }
 
-function setLineTxt(txt){
-    gMeme.lines[gMeme.selectedLineIdx].txt=txt
+function setLineTxt(txt) {
+    gMeme.lines[gMeme.selectedLineIdx].txt = txt
 }
 
 document.getElementById('text-input').addEventListener('input', (e) => {
-  onTextInput(e.target.value)
+    onTextInput(e.target.value)
 })
 
 document.getElementById('download-btn').addEventListener('click', (e) => {
-  onDownloadMeme()
+    onDownloadMeme()
 })
+
+function onColorChange(color) {
+    setLineColor(color)
+    renderMeme()
+}
+
+function onFontSizeIncrease() {
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+    line.size += 5
+        renderMeme()
+}
+function onFontSizeDecrease() {
+    const line = gMeme.lines[gMeme.selectedLineIdx]
+    line.size -= 5
+        renderMeme()
+
+}
+
+
 
 // ===== MEME SERVICE =====
 
+function setLineColor(color) {
+  gMeme.lines[gMeme.selectedLineIdx].color = color
+}
 
 // ===== GALLERY SERVICE =====
 function setImg(imgId) {
@@ -88,11 +110,11 @@ function setImg(imgId) {
 function renderGallery() {
     const galleryEl = document.getElementById('gallery')
     let html = ''
-    
+
     gImgs.forEach(img => {
         html += `<img src="${img.url}" onclick="onImgSelect(${img.id})">`
     })
-    
+
     galleryEl.innerHTML = html
 }
 
@@ -101,6 +123,16 @@ function onImgSelect(imgId) {
     renderMeme()
 }
 
+document.getElementById('color-input').addEventListener('change', (e) => {
+    onColorChange(e.target.value)
+})
+document.
+getElementById('font-size-increase').
+addEventListener('click', onFontSizeIncrease)
+
+document.
+getElementById('font-size-decrease').
+addEventListener('click', onFontSizeDecrease)
 
 renderGallery()
 renderMeme()
