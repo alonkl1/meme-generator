@@ -84,3 +84,22 @@ button:hover {
   grid-auto-rows: auto;
   gap: 10px;
 }
+
+.color-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.color-wrapper label {
+  font-weight: bold;
+  min-width: 100px;
+}
+
+.color-wrapper input[type="color"] {
+  width: 60px;
+  height: 60px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
