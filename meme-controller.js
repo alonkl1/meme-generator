@@ -22,7 +22,10 @@ function renderMeme() {
             ctx.fillStyle = line.color
             ctx.font = line.size + 'px Arial'
 
-            const yPos = idx === 0 ? 50 : 450
+            const spacing = canvas.height / (gMeme.lines.length + 1)
+            const yPos = spacing * (idx + 1)
+
+            // const yPos = idx === 0 ? 50 : 450
             ctx.fillText(line.txt, 150, yPos)
 
             //Store pos for click detection
@@ -100,6 +103,43 @@ function onSwitchLine() {
 
 
 
+function onAddLine() {
+    const newLine = {
+        txt: `New line #${gMeme.lines.length +1}`,
+        size: 20,
+        color: 'white',
+        x: 0,
+        y: 0,
+        width: 0,
+        height: 0
+    }
+    gMeme.lines.push(newLine)
+    gMeme.selectedLineIdx = gMeme.lines.length - 1
+    
+    document.getElementById('text-input').value = 'New line'
+    document.getElementById('color-input').value = 'white'
+    
+    renderMeme()
+}
+
+function onDeleteLine() {
+    if (gMeme.lines.length === 1) {
+        alert('You need at least one line')
+        return
+    }
+    
+    gMeme.lines.splice(gMeme.selectedLineIdx, 1)
+    gMeme.selectedLineIdx = Math.max(0, gMeme.selectedLineIdx - 1)
+    
+    const currentLine = gMeme.lines[gMeme.selectedLineIdx]
+    document.getElementById('text-input').value = currentLine.txt
+    document.getElementById('color-input').value = currentLine.color
+    
+    renderMeme()
+}
 
 
+
+document.getElementById('add-line-btn').addEventListener('click', onAddLine)
+document.getElementById('delete-line-btn').addEventListener('click', onDeleteLine)
 
