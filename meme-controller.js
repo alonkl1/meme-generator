@@ -107,7 +107,7 @@ function onAddLine() {
     const newLine = {
         txt: `New line #${gMeme.lines.length +1}`,
         size: 20,
-        color: 'white',
+        color: '#ffffff',
         x: 0,
         y: 0,
         width: 0,
@@ -117,7 +117,7 @@ function onAddLine() {
     gMeme.selectedLineIdx = gMeme.lines.length - 1
     
     document.getElementById('text-input').value = 'New line'
-    document.getElementById('color-input').value = 'white'
+    document.getElementById('color-input').value = '#ffffff',
     
     renderMeme()
 }
