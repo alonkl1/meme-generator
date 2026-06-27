@@ -67,22 +67,29 @@ document.
 
 canvas.addEventListener('click', (e) => {
     const rect = canvas.getBoundingClientRect()
-    const clickX = e.clientX - rect.left
-    const clickY = e.clientY - rect.top
+
+    // Calculate the scale ratio (displayed size vs actual size)
+    const scaleX = canvas.width / rect.width
+    const scaleY = canvas.height / rect.height
+
+    // Convert click position to canvas coordinates
+
+    const clickX = (e.clientX - rect.left) * scaleX
+    const clickY = (e.clientY - rect.top) * scaleY
     console.log("!!!!!!!!!")
     // Check which line was clicked
     for (let i = 0; i < gMeme.lines.length; i++) {
         const line = gMeme.lines[i]
         if (clickX >= line.x && clickX <= line.x + line.width &&
             clickY >= line.y && clickY <= line.y + line.height) {
-            
+
             // Found the clicked line!
             gMeme.selectedLineIdx = i
-            
+
             // Update UI
             document.getElementById('text-input').value = line.txt
             document.getElementById('color-input').value = line.color
-            
+
             renderMeme()
             return
         }
